@@ -5,6 +5,7 @@ import com.baeldung.restfulwebservice.service.IFooService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -18,6 +19,11 @@ public class FooController {
     @GetMapping
     public List<Foo> findAll() {
         return service.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Foo findById(@PathVariable("id") Long id) {
+        throw new BadRequestException();
     }
 
     @PostMapping
