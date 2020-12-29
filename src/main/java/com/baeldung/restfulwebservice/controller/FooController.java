@@ -16,7 +16,7 @@ public class FooController {
     @Autowired
     private IFooService service;
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public List<Foo> findAll() {
         return service.findAll();
     }
