@@ -3,9 +3,8 @@ package com.baeldung.restfulwebservice.controller;
 import com.baeldung.restfulwebservice.model.Foo;
 import com.baeldung.restfulwebservice.service.IFooService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +18,11 @@ public class FooController {
     @GetMapping
     public List<Foo> findAll() {
         return service.findAll();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Foo create(@RequestBody Foo foo) {
+        return service.save(foo);
     }
 }
